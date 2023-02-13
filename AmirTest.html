@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Amir Presentation</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/beige.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<script type="text/javascript" src="d3.min.js"></script>
+		
+
+	</head>
+	<style>
+		#image1 {
+			position: absolute;
+			bottom: -50px;
+			left: -150px;
+		}
+		#image2 {
+			position: absolute;
+			bottom: -0px;
+			right: -100px;
+			width: 20%;
+		}
+		.bimg {
+			position: absolute;
+			top: -260px;
+			right: -150px;
+			width: 150px;
+		}
+		.resimg {
+			position: absolute;
+			top: -0px;
+			right: -100px;
+			width: 500px;
+		}
+		.button {
+  			text-align: center;
+  			font-size: 24px;
+		}
+		.float-divs {
+    		float: left;
+			position: absolute;
+		}  
+	</style>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section style="position:relative;">
+					<!-- <div >
+						<img src="Logo.png" style="position:absolute; top: -10 px; right: 10 px ">
+					</div> -->
+					<h1 style="font-size: 72px;">Amir Presentation on Image Processing</h1>
+					<br>
+					<h2 style="font-size: 48px">Amir Mohseni</h2>
+					<br>
+					<h2 style="font-size: 48px">Chemical and Materials Engineering</h2>
+					<h2 style="font-size: 48px">University of Alberta</h2>
+						<!-- <img src="Logo.png" style="position:absolute" id="image1"> -->
+						<img src="UofA.png" id="image2">
+				</section>
+				
+
+				<!-- <section data-background-image="Logo.png" 
+				data-background-size="150px" data-background-position="top right 10px"> -->
+				
+				<section data-auto-animate data-auto-animate-easing="ease-out" data-auto-animate-duration="0.8">
+					<div style="text-align: center">
+						<input type="button" class="button" id="runfilt" value="Run" style="margin: auto;width: 50%;">
+				  	</div>
+					<div style="margin: auto;width: 32%;position: relative;">
+						<div id="orig" class="float-divs"><canvas></canvas></div>
+						<div id="origp" class="float-divs"><canvas></canvas></div>
+						<div id="mod" class="float-divs"><canvas></canvas></div>
+						<div id="filt" class="float-divs"><canvas></canvas></div>
+						<div id="filtp" class="float-divs"><canvas></canvas></div>
+					</div>
+					<!-- <div style="text-align: center; margin-top: -700px; margin-right: -900px;">
+						<span>\(\alpha\) = <span id="sliderValue"></span></span>
+    					<div style="text-align: center">
+      						<input type="range" id="slider" value="1" min="0" max="200">
+    					</div>
+					</div>
+					<div style="text-align: center; margin-right: -900px;">
+						<span >\(\tau\) = <span id="slider2Value"></span></span>
+						<div style="text-align: center">
+							  <input type="range" id="slider2" value="50" min="5" max="50">
+						</div>
+					</div>
+					<div style="text-align: center;  margin-right: -900px;">
+						<span >\(R\) = <span id="slider3Value"></span></span>
+						<div style="text-align: center">
+							  <input type="range" id="slider3" value="10" min="10" max="99">
+						</div>
+					</div>
+					<div style="text-align: center;  margin-right: -900px;">
+						<div style="text-align: center">
+							  <input type="button" class="button" id="changalp" value="Change &alpha;" >
+						</div>
+					</div>
+					<div style="text-align: center;  margin-right: -900px;">
+						<div style="text-align: center">
+							  <input type="button" class="button" id="rerunsim" value="Rerun" >
+						</div>
+					</div> -->
+				</section>
+
+			</div>
+		</div>
+		
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script src="js/image_filter.js"></script>
+		
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				// parallaxBackgroundImage: 'Back3.png',
+				parallaxBackgroundSize: '50',
+				parallaxBackgroundHorizontal: 200,
+				// parallaxBackgroundVertical: 50,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX  ]
+			});
+		</script>
+		<!-- <script>
+
+			TESTER = document.getElementById('tester');
+		
+			d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
+
+function unpack(rows, key) {
+
+  return rows.map(function(row) { return row[key]; });
+
+}
+
+
+var z_data=[ ]
+
+for(i=0;i<24;i++)
+
+{
+
+  z_data.push(unpack(rows,i));
+
+}
+
+
+var data = [{
+
+           z: z_data,
+
+           type: 'surface'
+
+        }];
+
+
+var layout = {
+
+  title: 'Mt Bruno Elevation',
+
+  autosize: false,
+
+  width: 500,
+
+  height: 500,
+
+  margin: {
+
+    l: 0,
+
+    r: 0,
+
+    b: 0,
+
+    t: 0,
+
+
+
+  },
+  paper_bgcolor:'rgba(0,0,0,0)',
+  plot_bgcolor:'rgba(0,0,0,0)',
+  font: {size:16}
+
+};
+
+Plotly.newPlot(TESTER, data, layout);
+
+});
+
+		</script> -->
+	</body>
+</html>
