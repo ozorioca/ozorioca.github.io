@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guilherme Ozorio Cassol</title>
+  <meta name="description"
+    content="Lab Technician (Computer Process Control Lab) at the University of Alberta. PhD in Chemical Engineering. Research in distributed parameter systems, MPC, real‑time control, and SCADA/HMI systems." />
+  <meta property="og:title" content="Guilherme Ozorio Cassol" />
+  <meta property="og:description"
+    content="University of Alberta — Lab Technician, CPC Lab. Research: distributed parameter systems, MPC, real‑time control, SCADA/HMI." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ozorioca.github.io/" />
+  <link rel="icon" type="image/x-icon" href="https://ozorioca.github.io/img/favicon.ico" />
+  <!-- Keep your existing CSS/JS includes so tabs keep working -->
+  <link rel="stylesheet" href="files/ugr1wkv.css">
+  <link rel="stylesheet" href="files/bundle.css">
+  <script defer src="files/bundle.js"></script>
+  <style>
+    /* Small helpers so lists look tidy even without the original theme */
+    .block ul {
+      margin-left: 1.25rem;
+    }
+
+    .pub_list li,
+    .conf_list li {
+      margin-bottom: .4rem;
+    }
+
+    .contact-inline a {
+      text-decoration: none;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 900px) {
+      .two-col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .tag {
+      display: inline-block;
+      padding: .2rem .6rem;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      font-size: .9rem;
+      margin: .15rem .25rem .15rem 0;
+    }
+
+    /* Preloader overlay */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #353535;
+      /* your gray */
+      display: grid;
+      place-items: center;
+      z-index: 999999;
+      opacity: 1;
+      transition: opacity .6s ease;
+    }
+
+    /* Bigger logo during the intro */
+    #preloader img,
+    #preloader video {
+      /* min 280px, typically ~65vmin, cap at 900px */
+      width: clamp(280px, 65vmin, 900px);
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+
+    body {
+      background-color: black;
+    }
+
+    /* Hide everything except the overlay while loading */
+    body.preload-active>*:not(#preloader) {
+      opacity: 0;
+      transition: opacity .6s ease .1s;
+    }
+
+    /* When done, fade site in and overlay out */
+    body.preload-complete>*:not(#preloader) {
+      opacity: 1;
+    }
+
+    body.preload-complete #preloader {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* profile niceties */
+    #profile .two-col {
+      gap: 1.2rem;
+    }
+
+    #profile h4 {
+      margin: .2rem 0 .25rem;
+    }
+
+    #profile ul {
+      margin-left: 1.1rem;
+    }
+
+    /* Center the "fader show" block under the H2 on Home */
+    #home .home-hero {
+      min-height: 100svh;
+      /* fill viewport */
+      display: block;
+      /* keep your existing layout */
+    }
+
+    #home .home-hero_text {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      /* row 1 = h2, row 2 = the content */
+    }
+
+    #home .home-hero_text>.home-hero_both {
+      align-self: center;
+      /* vertical center within the remaining space */
+    }
+
+    /* (Optional) Slight breathing room on short screens */
+    @media (max-height: 600px) {
+      #home .home-hero {
+        min-height: 90svh;
+      }
+    }
+
+    #home .home-hero_text>.home-hero_both {
+      margin-block: 0 !important;
+    }
+
+    /* ===== Accordion (works for .accordion and .chapter.accordion) ===== */
+    .accordion,
+    .chapter.accordion {
+      border-top: 1px solid var(--border, #e6e6e6);
+    }
+
+    /* Make sure our panels are actually renderable */
+    .accordion_content,
+    .chapter_content {
+      display: block !important;
+    }
+
+
+    .accordion ul,
+    .chapter.accordion ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .accordion_li,
+    .chapter_li {
+      border-bottom: 1px solid var(--border, #e6e6e6);
+    }
+
+    /* Header row */
+    .accordion_a,
+    .chapter_a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+      padding: 1rem 0;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    /* Icon rotates when open */
+    .accordion_close {
+      display: inline-flex;
+      transition: transform .25s ease;
+    }
+
+    .accordion_li.open .accordion_close,
+    .chapter_li.open .accordion_close {
+      transform: rotate(45deg);
+    }
+
+    /* Smoothen the reveal */
+    /* Keep it simple: the JS will animate height+opacity */
+    /* keep panels simple; JS will animate height/opacity */
+    /* Reset the panel box so closed = truly zero height */
+    /* Panel: closed = 0fr, open = 1fr (smooth height) */
+    /* Panel box (collapsed) */
+    .accordion_content,
+    .chapter_content {
+      overflow: hidden;
+      height: 0;
+      /* collapse by default */
+      opacity: 0;
+      transition: height .28s cubic-bezier(.2, .6, .2, 1),
+        opacity .28s ease;
+      will-change: height, opacity;
+      padding: 0 !important;
+      /* spacing lives in .accordion_inner */
+      margin: 0 !important;
+      border: 0;
+    }
+
+    /* The real content area (you can pad this safely) */
+    .accordion_inner,
+    .chapter_inner {
+      padding: .75rem 0 1rem;
+      transform: translateY(-4px);
+      transition: transform .28s ease;
+    }
+
+    /* When open, we only fade/slide the inner; height is animated via JS */
+    .accordion_li.open .accordion_inner,
+    .chapter_li.open .chapter_inner {
+      transform: none;
+    }
+
+    /* keep your header styles (titles, chevron rotation, etc.) */
+
+
+    /* keep your header styles as-is */
+
+
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+
+      .accordion_content,
+      .chapter_content,
+      .accordion_inner,
+      .chapter_inner {
+        transition: none;
+      }
+    }
+
+    /* Isolated Profile accordion (does not clash with theme) */
+    .profile-accordion {
+      border-top: 1px solid var(--border, #e6e6e6);
+    }
+
+    .profile-accordion ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .profile-item {
+      border-bottom: 1px solid var(--border, #e6e6e6);
+    }
+
+    /* Header row */
+    .profile-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+      padding: 1rem 0;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .profile-close {
+      display: inline-flex;
+      transition: transform .25s ease;
+    }
+
+    .profile-item.open .profile-close {
+      transform: rotate(45deg);
+    }
+
+    /* Smooth height: 0fr → 1fr (no snap) */
+    .profile-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      /* collapsed */
+      overflow: hidden;
+      opacity: 0;
+      transition: grid-template-rows .28s ease, opacity .28s ease;
+    }
+
+    .profile-inner {
+      overflow: hidden;
+      /* needed for 0fr trick */
+      padding: .75rem 0 1rem;
+      /* spacing lives here */
+      transform: translateY(-4px);
+      transition: transform .28s ease;
+    }
+
+    /* Open state */
+    .profile-item.open>.profile-panel {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+
+    .profile-item.open .profile-inner {
+      transform: none;
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+
+      .profile-panel,
+      .profile-inner {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="page preload-active">
+  <!-- Initial Loader -->
+  <!-- Preloader overlay -->
+  <!-- Preloader overlay -->
+  <div id="preloader" role="status" aria-live="polite" aria-label="Loading">
+    <img id="prelogo" src="logo4.webp" alt="Site intro logo" />
+  </div>
+
+
+  <!-- Wrap your existing site in #site -->
+  <div id="site">
+    <!-- your current homepage markup starts here -->
+  </div>
+
+
+  <header class="header">
+    <div class="header_top">
+      <span><a href="#home">Guilherme Ozorio Cassol</a></span>
+      <span class="header_nav-button">
+        <span class="visible"><img src="files/burger.svg" alt="menu"></span>
+        <span><img src="files/close-white.svg" alt="close"></span>
+      </span>
+    </div>
+  </header>
+
+  <div class="header_banner">
+    <span><span class="b_count">00</span></span>
+    <span class="b_title">Home</span>
+  </div>
+
+  <nav class="nav">
+    <ul class="nav_menu">
+      <li><a data-index="0" data-slug="home"><span>00</span> <span>Home</span></a></li>
+      <li><a data-index="1" data-slug="profile"><span>01</span> <span>Profile</span></a></li>
+      <li><a data-index="2" data-slug="research"><span>02</span> <span>Research</span></a></li>
+      <li><a data-index="3" data-slug="teaching"><span>03</span> <span>Teaching</span></a></li>
+      <li><a data-index="4" data-slug="publications"><span>04</span> <span>Publications</span></a></li>
+    </ul>
+
+    <div class="nav_contact">
+      <div><a href="mailto:ozorioca@ualberta.ca">ozorioca@ualberta.ca</a></div>
+    </div>
+    <div class="nav_socials">
+      <!-- Add when ready -->
+      <!-- <a href="https://www.linkedin.com/in/..." target="_blank">LinkedIn</a> -->
+      <!-- <a href="https://scholar.google.com/..." target="_blank">Google Scholar</a> -->
+    </div>
+    <div class="nav_footer">
+      <div class="nav_legal">
+        <small>© Guilherme Ozorio Cassol 2025</small>
+        <a href="https://ozorioca.github.io/privacy"><small>Privacy &amp; Cookie Policy</small></a>
+      </div>
+      <div class="nav_credits"><a><small>site credits</small></a></div>
+    </div>
+  </nav>
+
+  <div class="tabs">
+    <!-- HOME -->
+    <section id="home" data-title="Home" data-index="0" data-slug="home" class="tab tab-0 tab-open">
+      <header class="tab_header" data-index="0" data-slug="home">
+        <div class="tab_logo">Guilherme Ozorio Cassol</div>
+      </header>
+      <div class="tab_content">
+        <div class="subtab subtab-home subtab-open">
+          <div class="tab_page">
+            <div class="block home-hero">
+              <div class="home-hero_text">
+                <h2 class="fader" style="padding-top: 10px;">Lab Technician <br> Computer Process Control Lab
+                  <br>University of Alberta
+                </h2>
+                <div class="home-hero_both">
+                  <h4 class="fader">
+                    <p>PhD in Chemical Engineering (University of Alberta, 2022). I design, instrument, and automate
+                      chemical engineering laboratories; mentor TAs; and help deliver hands‑on lab experiences across
+                      CPC courses.</p>
+                    <p>My research spans distributed parameter systems (PDE‑based modelling and control), optimal/MPC,
+                      real‑time estimation, and SCADA/HMI implementations with Arduino/ESP32 and web back‑ends. Recent
+                      work includes algae growth monitoring, natural circulation loops, and phase‑change systems.</p>
+                    <br>
+                    <p class="contact-inline"><strong>Contact:</strong> <a
+                        href="mailto:ozorioca@ualberta.ca">ozorioca@ualberta.ca</a> </p>
+                  </h4>
+                  <div class="home-hero_image fader">
+                    <img src="files/profile.jpg" alt="Portrait of Guilherme Ozorio Cassol" style="height: 500px;width: auto;"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <!-- PROFILE (was CV) -->
+    <section id="profile" data-title="Profile" data-index="1" data-slug="profile" class="tab tab-1">
+      <header class="tab_header" data-index="1" data-slug="profile">
+        <div class="tab_num">01</div>
+        <div class="tab_title">Profile</div>
+      </header>
+
+      <div class="tab_content">
+        <div class="tab_page">
+          <!-- Your accordion sits INSIDE the tab -->
+          <!-- PROFILE accordion (isolated classes) -->
+          <section class="profile-accordion" data-accordion="single">
+            <ul>
+              <!-- Positions -->
+              <li id="profile-positions" class="profile-item fader">
+                <a class="profile-trigger" href="#profile-positions" aria-expanded="false">
+                  <span>Positions</span>
+                  <span class="profile-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22.414" height="22.414" viewBox="0 0 22.414 22.414"
+                      aria-hidden="true">
+                      <g transform="translate(-1022.293 -1120.293)">
+                        <line y1="21" x2="21" transform="translate(1023 1121)" fill="none" stroke="#292929"
+                          stroke-linecap="round" stroke-width="1" />
+                        <line x1="21" y1="21" transform="translate(1023 1121)" fill="none" stroke="#292929"
+                          stroke-linecap="round" stroke-width="1" />
+                      </g>
+                    </svg>
+                  </span>
+                </a>
+
+                <div class="profile-panel">
+                  <div class="profile-inner">
+                    <!-- existing content preserved -->
+                    <div class="block fader two-col">
+                      <div>
+                        <h4>Current</h4>
+                        <p><strong>Lab Technician, Computer Process Control Lab</strong><br>
+                          University of Alberta — Edmonton, Alberta, Canada<br>
+                          <em>2024–Present</em>
+                        </p>
+                      </div>
+                      <div>
+                        <h4>Previous</h4>
+                        <p><strong>Post-Doctoral Fellow</strong><br>
+                          University of Alberta — Edmonton, Alberta, Canada<br>
+                          <em>2022–2024</em>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Education -->
+              <li id="profile-education" class="profile-item fader">
+                <a class="profile-trigger" href="#profile-education" aria-expanded="false">
+                  <span>Education</span>
+                  <span class="profile-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22.414" height="22.414" viewBox="0 0 22.414 22.414"
+                      aria-hidden="true">
+                      <g transform="translate(-1022.293 -1120.293)">
+                        <line y1="21" x2="21" transform="translate(1023 1121)" fill="none" stroke="#292929"
+                          stroke-linecap="round" stroke-width="1" />
+                        <line x1="21" y1="21" transform="translate(1023 1121)" fill="none" stroke="#292929"
+                          stroke-linecap="round" stroke-width="1" />
+                      </g>
+                    </svg>
+                  </span>
+                </a>
+                <div class="profile-panel">
+                  <div class="profile-inner">
+                    <!-- existing content preserved -->
+                    <div class="block fader">
+                      <ul>
+                        <li><strong>PhD, Chemical Engineering - Process Control</strong> — University of Alberta,
+                          Edmonton, Canada (2018–2022).</li>
+                        <li><strong>MSc, Chemical Engineering</strong> — Federal University of Rio de Janeiro, Brazil
+                          (2015–2016).</li>
+                        <li><strong>BSc, Chemical Engineering</strong> — Federal University of Santa Maria, Brazil
+                          (2009–2014).</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Scholarships & Awards -->
+              <li id="profile-scholarships" class="profile-item fader">
+                <a class="profile-trigger" href="#profile-scholarships" aria-expanded="false">
+                  <span>Scholarships &amp; Awards</span>
+                  <span class="profile-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22.414" height="22.414" viewBox="0 0 22.414 22.414"
+                      aria-hidden="true">
+                      <g transform="translate(-1022.293 -1120.293)">
+                        <line y1="21" x2="21" transform="translate(1023 1121)" fill="none" stroke="#292929"
+                          stroke-linecap="round" stroke-width="1" />
+                        <line x1="21" y1="21" transform="translate(1023 1121)" fill="none" stroke="#292929"
+                          stroke-linecap="round" stroke-width="1" />
+                      </g>
+                    </svg>
+                  </span>
+                </a>
+                <div class="profile-panel">
+                  <div class="profile-inner">
+                    <div class="block fader">
+                      <ul>
+                        <li><strong>Full Doctorate Scholarship (CAPES, Brazil)</strong>, 2018–2021.</li>
+                        <li><strong>Bolsa Nota 10 Award</strong>, 2016.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Technical Skills -->
+              <li id="profile-skills" class="profile-item fader">
+                <a class="profile-trigger" href="#profile-skills" aria-expanded="false">
+                  <span>Technical Skills</span>
+                  <span class="profile-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22.414" height="22.414" viewBox="0 0 22.414 22.414"
+                      aria-hidden="true">
+                      <g transform="translate(-1022.293 -1120.293)">
+                        <line y1="21" x2="21" transform="translate(1023 1121)" fill="none" stroke="#292929"
+                          stroke-linecap="round" stroke-width="1" />
+                        <line x1="21" y1="21" transform="translate(1023 1121)" fill="none" stroke="#292929"
+                          stroke-linecap="round" stroke-width="1" />
+                      </g>
+                    </svg>
+                  </span>
+                </a>
+                <div class="profile-panel">
+                  <div class="profile-inner">
+                    <div class="block fader">
+            <div class="two-col">
+              <div>
+                <p>
+                  <span class="tag">Python</span>
+                  <span class="tag">MATLAB</span>
+                  <span class="tag">C/C++</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">Django</span>
+                  <span class="tag">LaTeX</span>
+                  <span class="tag">Jupyter/Colab</span>
+                </p>
+                <p>
+                  <span class="tag">SCADA/HMI</span>
+                  <span class="tag">Arduino</span>
+                  <span class="tag">ESP32</span>
+                  <span class="tag">Data Analysis</span>
+                  <span class="tag">AI/ML</span>
+                  <span class="tag">Blender</span>
+                </p>
+              </div>
+              <div>
+                <h4>Focus Areas</h4>
+                <ul>
+                  <li>Distributed Parameter Systems (PDE modelling &amp; control)</li>
+                  <li>Optimal &amp; Model Predictive Control (MPC)</li>
+                  <li>Real‑time estimation and observers</li>
+                  <li>Instrumentation, automation, and lab integration</li>
+                </ul>
+              </div>
+            </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- RESEARCH -->
+    <section id="research" data-title="Research" data-index="2" data-slug="research" class="tab tab-2">
+      <header class="tab_header" data-index="2" data-slug="research">
+        <div class="tab_num">02</div>
+        <div class="tab_title">Research</div>
+      </header>
+      <div class="tab_content">
+        <div class="tab_page">
+          <div class="block">
+            <h1 class="fader">Research</h1>
+          </div>
+          <div class="block text fader">
+            <ul>
+              <li>Modelling, experimental planning, and data acquisition for batch and continuous adsorption processes.
+              </li>
+              <li>Modelling, data acquisition, and optimization of enzymatic hydrolysis for bioethanol production.</li>
+              <li>Experimental design of a continuous crystallizer with recycle and a cooling jacket.</li>
+              <li>Development of an autonomous sailing vessel.</li>
+              <li>Development and control of a small‑scale natural circulation loop for energy studies.</li>
+              <li>Cultivation, sensing, and monitoring of algae growth.</li>
+              <li>Development and control of small‑scale phase‑change systems with moving boundaries.</li>
+              <li>Real‑time implementation of advanced control and estimation, including SCADA/HMI prototypes with
+                Arduino or ESP32 and web back‑ends.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEACHING -->
+    <section id="teaching" data-title="Teaching" data-index="3" data-slug="teaching" class="tab tab-3">
+      <header class="tab_header" data-index="3" data-slug="teaching">
+        <div class="tab_num">03</div>
+        <div class="tab_title">Teaching</div>
+      </header>
+      <div class="tab_content">
+        <div class="tab_page">
+          <div class="block fader">
+            <h3>Teaching Experience</h3>
+          </div>
+          <div class="block fader">
+            <ul>
+              <li><strong>CPC Lab Technician &amp; Lab Coordinator</strong> — CPC Courses Lab Activities (2024–Present)
+              </li>
+              <li><strong>Instructor</strong> — Arduino and Basic Controls Workshop (Fall 2025)</li>
+              <li><strong>Instructor</strong> — CH E 472: Modelling Process Dynamics (Winter 2024), University of
+                Alberta</li>
+              <li><strong>Teaching Assistant</strong> — CH E 472: Modelling Process Dynamics (Winter 2020, 2021, 2022)
+              </li>
+              <li><strong>Teaching Assistant</strong> — CH E 448: Process Control for Mechanical Engineering (Winter
+                2019)</li>
+              <li><strong>Grader</strong> — CH E 448: Process Control for Mechanical Engineering (Winter 2018)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" data-title="Publications" data-index="4" data-slug="publications" class="tab tab-4">
+      <header class="tab_header" data-index="4" data-slug="publications">
+        <div class="tab_num">04</div>
+        <div class="tab_title">Publications</div>
+      </header>
+      <div class="tab_content">
+        <div class="tab_page">
+          <div class="block fader">
+            <h3>Journal Articles</h3>
+          </div>
+          <div class="block fader">
+            <ol class="pub_list">
+              <li>B. Moadeli; G. O. Cassol; S. Dubljevic. <em>Optimal control of axial dispersion tubular reactors with
+                  recycle: Addressing state‑delay through transport PDEs</em>, <strong>The Canadian Journal of Chemical
+                  Engineering</strong> 103(8): 3751–3766, 2025.</li>
+              <li>A. Hassan; G. Ozorio Cassol; S. A. Bacha; S. Dubljevic. <em>Optimal and Model Predictive Control of
+                  Single Phase Natural Circulation in a Rectangular Closed Loop</em>, <strong>Sustainability</strong>
+                17(19): 8807, 2025.</li>
+              <li>F. Sadehlari; G. O. Cassol; S. Dubljevic. <em>Screening of parameters and optimization of nickel
+                  extraction by green emulsion liquid membrane using statistical experimental design</em>, <strong>The
+                  Canadian Journal of Chemical Engineering</strong>, 2025.</li>
+              <li>G. Ozorio Cassol; S. Dubljevic. <em>The Chemostat Reactor: A Stability Analysis and Model Predictive
+                  Control</em>, <strong>Journal of Process Control</strong> 138: 103223, 2024.</li>
+              <li>Y. Belhamadia; G. O. Cassol; S. Dubljevic. <em>Numerical Modelling of Hyperbolic Phase Change
+                  Problems: Application to Continuous Casting</em>, <strong>International Journal of Heat and Mass
+                  Transfer</strong> 209: 124042, 2023.</li>
+              <li>G. O. Cassol; S. Dubljevic. <em>Model Predictive Control of a Second‑order Hyperbolic
+                  Transport‑Reaction Process</em>, <strong>AIChE Journal</strong> 68(10): e17812, 2022.</li>
+              <li>S. Khatibi; G. O. Cassol; S. Dubljevic. <em>Model predictive control of a non‑isothermal axial
+                  dispersion tubular reactor with recycle</em>, <strong>Computers &amp; Chemical Engineering</strong>
+                145: 107159, 2021.</li>
+              <li>G. O. Cassol; S. Dubljevic. <em>Hyperbolicity of reaction‑transport processes</em>, <strong>AIChE
+                  Journal</strong> 67(4): e17135, 2021.</li>
+              <li>S. Khatibi; G. O. Cassol; S. Dubljevic. <em>Linear model predictive control for a coupled CSTR and
+                  axial dispersion tubular reactor with recycle</em>, <strong>Mathematics</strong> 8(5): 711, 2020.</li>
+              <li>G. O. Cassol; S. Dubljevic. <em>Discrete Output Regulator Design for the Linearized Saint–Venant–Exner
+                  Model</em>, <strong>Processes</strong> 8(8): 915, 2020.</li>
+              <li>G. Ozorio Cassol; D. Ni; S. Dubljevic. <em>Heat Exchanger System Boundary Regulation</em>,
+                <strong>AIChE Journal</strong> 65(8): e16623, 2019.
+              </li>
+              <li>G. O. Cassol; S. Dubljevic. <em>Dynamical Analysis and Model Predictive Control of an Auto‑Thermal
+                  Reactor</em>, <strong>Industrial &amp; Engineering Chemistry Research</strong> 58(30): 13686–13698,
+                2019.</li>
+              <li>G. O. Cassol; R. Gallon; M. Schwaab; E. Barbosa‑Coutinho; J. B. Severo Júnior; J. C. Pinto.
+                <em>Statistical Evaluation of Non‑Linear Parameter Estimation Procedures for Adsorption Equilibrium
+                  Models</em>, <strong>Adsorption Science &amp; Technology</strong> 32(4): 257–273, 2014.
+              </li>
+            </ol>
+          </div>
+
+          <div class="block fader">
+            <h3>Conferences &amp; Proceedings</h3>
+          </div>
+          <div class="block fader">
+            <ol class="conf_list">
+              <li>M. Akbarnezhad; G. O. Cassol; C. R. Koch; S. Dubljevic. “Output Regulation for Transport‑Reaction
+                Three‑Dimensional Hyperbolic PDE in Cylindrical Coordinates”, <strong>2025 American Control Conference
+                  (ACC)</strong>, 2025.</li>
+              <li>G. O. Cassol; S. Dubljevic. “Control and Estimation of the Heat Equation: Real‑Time Experiments and
+                Application on a Metal Slab”, <strong>2024 AIChE Annual Meeting</strong>, 2024.</li>
+              <li>G. O. Cassol; S. Dubljevic. “Kalman‑Filter Design for Transport‑Reaction Processes in Cylindrical
+                Coordinates”, <strong>2024 AIChE Annual Meeting</strong>, 2024.</li>
+              <li>G. O. Cassol; S. Dubljevic. “Prediction of Drop Size Distribution in a Pulsed Packed Column Using
+                Convolutional Neural Networks (CNN)”, <strong>2024 AIChE Annual Meeting</strong>, 2024.</li>
+              <li>G. O. Cassol; S. Dubljevic. “Real‑Time Control and Estimation of Distributed Parameter Systems”,
+                <strong>2024 AIChE Annual Meeting</strong>, 2024.
+              </li>
+              <li>A. Hassan; G. O. Cassol; S. Dubljevic. “Linear Model Predictive Control for Two‑Dimensional
+                Transport‑Reaction Processes”, <strong>2024 American Control Conference (ACC)</strong>, 2024.</li>
+              <li>G. O. Cassol; S. Dubljevic. “Constrained optimal tracking for a DPS in the discrete‑time setting”,
+                <strong>AIP Conference Proceedings</strong> 3034(1): 020014, 2024.
+              </li>
+              <li>G. O. Cassol; S. Dubljevic. “Model Predictive Control of an Axial Dispersion Tubular Reactor in a
+                Distributed Parameter System with State Delay”, <strong>2023 AIChE Annual Meeting</strong>, 2023.</li>
+              <li>G. O. Cassol; S. Dubljevic. “Dynamic Analysis and Model Predictive Control of a Biochemical Reactor
+                Under Delayed Uncertain Measurement and Multi‑Rate Actuation/Sampling”, <strong>2023 AIChE Annual
+                  Meeting</strong>, 2023.</li>
+              <li>A. Hassan; G. O. Cassol; S. Dubljevic. “Predictive Controller Design for a PDE‑ODE System with Mixed
+                Actuation”, <strong>2023 American Control Conference (ACC)</strong>, 2023.</li>
+              <li>G. O. Cassol; S. Dubljevic. “Dynamic Analysis and Stabilization of a Packed Bed Reactor (PBR)”,
+                <strong>2022 AIChE Annual Meeting</strong>, 2022.
+              </li>
+              <li>G. O. Cassol; S. Dubljevic. “Packed Bed Reactor Output Regulation”, <strong>2022 American Control
+                  Conference (ACC)</strong>, 2022.</li>
+              <li>G. O. Cassol; S. Dubljevic. “Model Predictive Control and Observer Design for a Chemostat Reactor”,
+                <strong>2021 AIChE Annual Meeting</strong>, 2021.
+              </li>
+              <li>G. O. Cassol; S. Dubljevic. “Robust Model Predictive Control for a System of Coupled PDEs‑ODEs”,
+                <strong>2021 American Control Conference (ACC)</strong>, 2021.
+              </li>
+              <li>S. Khatibi; G. O. Cassol; S. Dubljevic. “Linear Model Predictive Control for a Cascade ODE‑PDE
+                System”, <strong>2020 American Control Conference (ACC)</strong>, 2020.</li>
+              <li>G. O. Cassol; S. Dubljevic. “Discrete Output Regulator Design for a Coupled ODE‑PDE System”,
+                <strong>2020 American Control Conference (ACC)</strong>, 2020.
+              </li>
+              <li>G. O. Cassol; S. Dubljevic. “Hyperbolicity of the Heat Equation”, <strong>IFAC‑PapersOnLine</strong>
+                52(7): 63–67, 2019.</li>
+              <li>G. O. Cassol; S. Dubljevic. “Discrete Output Regulator Design for a Monotubular Reactor with Recycle”,
+                <strong>2019 American Control Conference (ACC)</strong>, 2019.
+              </li>
+              <li>G. O. Cassol; S. Dubljevic. “Hyperbolicity of Heat Transport Processes”, <strong>2019 AIChE Annual
+                  Meeting</strong>, 2019.</li>
+              <li>G. O. Cassol; G. V. K. Campos; D. M. Thomaz; B. D. O. Capron; A. R. Secchi. “Reinforcement Learning
+                Applied to Process Control: A Van der Vusse Reactor Case Study”, <strong>Computer Aided Chemical
+                  Engineering</strong> 44: 553–558, 2018.</li>
+              <li>G. O. Cassol; S. Dubljevic. “An Analysis of the Nonlinear Behavior of the Autothermal Reactor”,
+                <strong>2018 AIChE Annual Meeting</strong>, 2018.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="cookie hidden">
+    <div class="cookie_message">
+      <p>This website uses cookies to ensure you get the best experience.</p>
+    </div>
+    <p><a class="cookie_btn cookie_btn_accept_all pill">Got It!</a></p>
+  </div>
+  <script>
+    (() => {
+      // ---- TUNABLES ----
+      const HARD_DURATION_MS = 5500; // set to your WebP animation length in ms, or null to auto-detect
+      const IGNORE_REDUCED_MOTION = true; // set true so we never skip early on machines with reduced motion
+      const EXTRA_BUFFER_MS = 150;   // tiny buffer to ensure last frame fully shows
+      const FALLBACK_MS = 5000;      // used if parsing fails and no hard duration is provided
+      const MAX_CAP_MS = 12000;      // safety cap (e.g., if file loops)
+
+      const pre = document.getElementById('preloader');
+      const img = document.getElementById('prelogo');
+
+      if (!pre || !img) return; // overlay missing; nothing to do
+
+      function imgReady(el) {
+        // Ensure the first frame is decodable before we start the timer
+        if (el.decode) return el.decode().catch(() => { });
+        return new Promise(res => el.complete ? res() : el.addEventListener('load', res, { once: true }));
+      }
+
+      // Parse animated WebP and sum frame durations (ms)
+      async function parseWebPDuration(url) {
+        const resp = await fetch(url, { cache: 'force-cache' });
+        const buf = await resp.arrayBuffer();
+        const dv = new DataView(buf);
+
+        const tag = (o) => String.fromCharCode(dv.getUint8(o), dv.getUint8(o + 1), dv.getUint8(o + 2), dv.getUint8(o + 3));
+        const u32 = (o) => dv.getUint32(o, true);
+        const u24 = (o) => (dv.getUint8(o)) | (dv.getUint8(o + 1) << 8) | (dv.getUint8(o + 2) << 16);
+
+        if (tag(0) !== 'RIFF' || tag(8) !== 'WEBP') throw new Error('Not a WebP');
+
+        let off = 12, total = 0, loops = 1, len = dv.byteLength;
+        while (off + 8 <= len) {
+          const four = tag(off), size = u32(off + 4), p = off + 8;
+          if (four === 'ANIM' && size >= 6) {
+            // Loop count: 0 means infinite. We’ll treat infinite as one pass for the intro.
+            const lc = dv.getUint16(p + 4, true);
+            loops = lc === 0 ? 1 : lc;
+          } else if (four === 'ANMF' && size >= 16) {
+            const dur = u24(p + 12);       // duration in 1ms units (spec default: 100ms if 0)
+            total += (dur || 100);
+          }
+          off = p + size + (size & 1); // chunks are padded to even sizes
+        }
+        if (total <= 0) throw new Error('No frames?');
+        return Math.min(total * loops, MAX_CAP_MS);
+      }
+
+      function finish() {
+        document.body.classList.add('preload-complete');
+        // Remove overlay after fade completes
+        setTimeout(() => pre && pre.remove(), 900);
+        document.body.classList.remove('preload-active');
+      }
+
+      (async function start() {
+        // If author supplies data-duration on the <img>, use that first
+        const dataDur = Number(img.getAttribute('data-duration') || NaN);
+
+        await imgReady(img);
+
+        let ms;
+        if (Number.isFinite(dataDur)) {
+          ms = dataDur;
+        } else if (HARD_DURATION_MS != null) {
+          ms = HARD_DURATION_MS;
+        } else {
+          // Only shorten if user explicitly wants reduced motion AND we’re not hard-forcing a time
+          if (!IGNORE_REDUCED_MOTION && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            ms = 200; // super short
+          } else {
+            try {
+              ms = await parseWebPDuration(img.currentSrc || img.src);
+            } catch (e) {
+              ms = FALLBACK_MS;
+            }
+          }
+        }
+
+        // Helpful debug
+        try { console.log('[preloader] will hold for', ms, 'ms'); } catch (_) { }
+
+        setTimeout(finish, ms + EXTRA_BUFFER_MS);
+      })();
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const ACC = '.accordion, .chapter.accordion';
+
+      // Helper: animate open -> height: 0 -> scrollHeight, then set to 'auto'
+      function openPanel(panel) {
+        // clear possible leftovers from older versions
+        panel.style.transition = 'none';
+        panel.style.height = 'auto';
+        const target = panel.scrollHeight;
+
+        panel.style.height = '0px';
+        panel.style.opacity = '0';
+        // force reflow to apply the 0px
+        panel.offsetHeight;
+
+        panel.style.transition = 'height .28s cubic-bezier(.2,.6,.2,1), opacity .28s ease';
+        panel.style.height = target + 'px';
+        panel.style.opacity = '1';
+
+        function done(e) {
+          if (e.propertyName !== 'height') return;
+          panel.style.transition = 'none';
+          panel.style.height = 'auto'; // so content can resize naturally
+          panel.removeEventListener('transitionend', done);
+          // re-enable transitions for future toggles
+          requestAnimationFrame(() => panel.style.transition = '');
+        }
+        panel.addEventListener('transitionend', done);
+      }
+
+      // Helper: animate close -> current height -> 0
+      function closePanel(panel) {
+        const current = panel.offsetHeight;              // rendered height (auto or px)
+        panel.style.transition = 'none';
+        panel.style.height = current + 'px';
+        panel.style.opacity = '1';
+        panel.offsetHeight;
+
+        panel.style.transition = 'height .28s cubic-bezier(.2,.6,.2,1), opacity .28s ease';
+        panel.style.height = '0px';
+        panel.style.opacity = '0';
+      }
+
+      function toggleItem(li, group) {
+        const single = group?.dataset.accordion === 'single';
+        const isOpen = li.classList.contains('open');
+        const panel = li.querySelector('.accordion_content, .chapter_content');
+        if (!panel) return;
+
+        if (single && !isOpen) {
+          group.querySelectorAll('.accordion_li.open, .chapter_li.open')
+            .forEach(other => {
+              other.classList.remove('open');
+              closePanel(other.querySelector('.accordion_content, .chapter_content'));
+              other.querySelector('.accordion_a, .chapter_a')
+                ?.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        if (isOpen) {
+          li.classList.remove('open');
+          closePanel(panel);
+        } else {
+          li.classList.add('open');
+          openPanel(panel);
+        }
+
+        li.querySelector('.accordion_a, .chapter_a')
+          ?.setAttribute('aria-expanded', String(!isOpen));
+      }
+
+      // Clicks
+      document.addEventListener('click', function (e) {
+        const trigger = e.target.closest('.accordion_a, .chapter_a');
+        if (!trigger) return;
+        e.preventDefault(); // stop "#" navigation
+
+        const li = trigger.closest('.accordion_li, .chapter_li');
+        const group = trigger.closest(ACC);
+        if (!li || !group) return;
+
+        toggleItem(li, group);
+      });
+
+      // Init: clean old inline styles and set proper collapsed state
+      document.querySelectorAll(ACC).forEach(group => {
+        group.querySelectorAll('.accordion_li, .chapter_li').forEach(li => {
+          const panel = li.querySelector('.accordion_content, .chapter_content');
+          const trig = li.querySelector('.accordion_a, .chapter_a');
+          if (!panel || !trig) return;
+
+          // wipe leftovers from previous attempts
+          panel.style.maxHeight = '';
+          panel.style.height = '';
+          panel.style.opacity = '';
+          panel.style.transition = '';
+
+          if (li.classList.contains('open')) {
+            // start opened
+            panel.style.height = 'auto';
+            panel.style.opacity = '1';
+          } else {
+            // start closed
+            panel.style.height = '0px';
+            panel.style.opacity = '0';
+          }
+          trig.setAttribute('aria-expanded', String(li.classList.contains('open')));
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    // Remove stale inline styles some older scripts left behind
+    document.querySelectorAll('.accordion_content, .chapter_content').forEach(p => {
+      p.style.removeProperty('max-height');  // old approach we used earlier
+      p.style.removeProperty('display');     // some themes set display:none
+    });
+  </script>
+
+  <script>
+    (function () {
+      const group = document.querySelector('.profile-accordion');
+      if (!group) return;
+
+      function toggle(li) {
+        const single = group.dataset.accordion === 'single';
+        const isOpen = li.classList.contains('open');
+
+        // close others first in single mode
+        if (single && !isOpen) {
+          group.querySelectorAll('.profile-item.open').forEach(o => {
+            o.classList.remove('open');
+            o.querySelector('.profile-trigger')?.setAttribute('aria-expanded', 'false');
+          });
+        }
+        // toggle this one
+        li.classList.toggle('open');
+        li.querySelector('.profile-trigger')?.setAttribute('aria-expanded', String(!isOpen));
+      }
+
+      // Capture-phase listener + stop propagation to block bundle.js
+      group.addEventListener('click', function (e) {
+        const trigger = e.target.closest('.profile-trigger');
+        if (!trigger || !group.contains(trigger)) return;
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        toggle(trigger.closest('.profile-item'));
+      }, true); // capture = true
+
+      // ARIA wiring
+      group.querySelectorAll('.profile-item').forEach((li, i) => {
+        const btn = li.querySelector('.profile-trigger');
+        const panel = li.querySelector('.profile-panel');
+        if (!btn || !panel) return;
+        const pid = panel.id || ('profile-panel-' + i);
+        panel.id = pid;
+        btn.setAttribute('role', 'button');
+        btn.setAttribute('aria-controls', pid);
+        btn.setAttribute('aria-expanded', String(li.classList.contains('open')));
+      });
+
+      // Optional: open from hash (#profile-education)
+      if (location.hash) {
+        const t = document.querySelector(location.hash);
+        const li = t?.closest?.('.profile-item');
+        if (li) {
+          li.classList.add('open');
+          li.querySelector('.profile-trigger')?.setAttribute('aria-expanded', 'true');
+        }
+      }
+    })();
+  </script>
+
+
+
+
+
+</body>
+
+</html>
